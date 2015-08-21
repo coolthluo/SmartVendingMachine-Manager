@@ -1,0 +1,24 @@
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">         
+      <a class="navbar-brand" href="/">Smart Vending Machine Monitor</a>
+    </div>
+
+    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-right" role="search">
+        <ul class="nav navbar-nav navbar-right">
+          <% if (!locals.name) { %>
+              <a class="btn btn-success" href="/login" role="button">Sign in</a>
+              <a class="btn btn-success" href="/reg" role="button">Sign up</a>
+          <% } else {%>
+            
+            <li><a href="#">        
+                <%= locals.name %> 
+            </a></li>
+            <li><a href="/logout">Logout</a></li> 
+          <% } %>           
+        </ul>
+      </form>
+    </div>              
+  </div>
+</div>

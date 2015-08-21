@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link type = "text/css" rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/navbar-static-top.css" />  
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">         
+      <a class="navbar-brand" href="/">Smart Vending Machine Monitor</a>
+    </div>
+
+    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-right" role="search">
+        <ul class="nav navbar-nav navbar-right">
+          <% if (!locals.name) { %>
+              <a class="btn btn-default" href="/reg" role="button">Sign up</a>
+              <a class="btn btn-success" href="/login" role="button">Sign in</a>
+          <% } else {%>
+            
+            <li><a href="#">        
+                <%= locals.name %> (Manager) 
+            </a></li>
+            <li><a href="/logout">Logout</a></li> 
+          <% } %>           
+        </ul>
+      </form>
+    </div>              
+  </div>
+</div>
+
+
+<div class="jumbotron">
+    <div class="container">
+        <h1>Moniter System</h1>
+        <p>This is a incrediable smart vending machine monitor system, give you all kinds of information of our business.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Revenue Details</h2>
+            <p>Want to know our sales details?</p>
+            <p><a class="btn btn-default btn-lg" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Machine Details</h2>
+            <p>Check every smart vending machines inventory!</p>
+            <p><a class="btn btn-default btn-lg" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Item Details</h2>
+            <p>We provide every goods information!</p>
+            <p><a class="btn btn-default btn-lg" role="button">View details &raquo;</a></p>
+        </div>
+    </div>
+    <hr/>
+    <footer>
+        <p>&copy;COEN359 2015</p>
+    </footer>
+</div>
+</body>
+</html>
