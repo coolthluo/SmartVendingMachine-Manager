@@ -10,7 +10,14 @@ var routes = require('./routes/index');
 var reg = require('./routes/reg');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
-
+var itemdetails = require('./routes/itemdetails');
+var updateitem = require('./routes/updateitem');
+var additem = require('./routes/additem');
+var deleteitem = require('./routes/deleteitem');
+var userdetails = require('./routes/userdetails');
+var machinedetails = require('./routes/machinedetails');
+var machineitem = require('./routes/machineitem');
+var saledetails = require('./routes/saledetails');
 
 var app = express();
 
@@ -31,7 +38,14 @@ app.use('/', routes);
 app.use('/reg', reg);
 app.use('/login', login);
 app.use('/logout', logout);
-
+app.use('/itemdetails', itemdetails);
+app.use('/updateitem', updateitem);
+app.use('/additem', additem);
+app.use('/deleteitem', deleteitem);
+app.use('/userdetails',userdetails);
+app.use('/machinedetails', machinedetails);
+app.use('/machineitem', machineitem);
+app.use('/saledetails', saledetails);
 
 
 // catch 404 and forward to error handler

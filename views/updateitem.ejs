@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">       
+    <title></title>
+  
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/signin.css" />
+  </head>
+  <body>
+<div id="container" class="container">
+    <div id="container" class="container">
+
+      <form class="form-signin" role="form" method="post">
+        <h4 class="form-signin-heading">Update Item</h4>
+
+        <input id="itemId" name="itemId" type="text" class="form-control" placeholder="id" required autofocus />
+        <input id="itemName" name="itemName" type="text" class="form-control" placeholder="name" required autofocus />
+        <input id="itemPrice" name="itemPrice" type="text" class="form-control" placeholder="price" required autofocus />
+        <input id="itemType" name="itemType" type="text" class="form-control" placeholder="type" required autofocus />
+        <input id="itemCalories" name="itemCalories" type="text" class="form-control" placeholder="calories" required autofocus />
+        <input id="itemSugar" name="itemSugar" type="text" class="form-control" placeholder="sugar" required autofocus />
+        <input id="itemInfo" name="itemInfo" type="text" class="form-control" placeholder="info" required autofocus />
+        <input id="itemPicture" name="itemPicture" type="text" class="form-control" placeholder="picture" required autofocus />
+        <input id="itemLastmod" name="itemLastmod" type="text" class="form-control" placeholder="last modify date" required autofocus />
+
+        <button id="btnSub" class="btn btn-lg btn-primary" type="submit">Update</button>
+        <a class="btn" href="/itemdetails" role="button">back to item detail</a>
+      </form>  
+    </div>   
+</body>
+</html>
+
+<script type="text/javascript" src="/javascripts/jquery-1.11.1.min.js" ></script>
+<script type="text/javascript">
+$(function() {
+        $('#btnSub').on('click', function() {
+            var 
+            $itemId = $('#itemId'),
+            itemIdVal = $.trim($itemId.val()),
+
+            $itemName= $('#itemName'),
+            itemNameVal = $.trim($itemName.val()),
+
+
+            $itemPrice= $('#itemPrice'),
+            itemPriceVal = $.trim($itemPrice.val()),
+
+            $itemType= $('#itemType'),
+            itemTypeVal = $.trim($itemType.val()),
+
+            $itemCalories= $('#itemCalories'),
+            itemCaloriesVal = $.trim($itemCalories.val()),
+
+            $itemSugar= $('#itemSugar'),
+            itemSugarVal = $.trim($itemSugar.val()),
+
+            $itemInfo= $('#itemInfo'),
+            itemInfoVal = $.trim($itemInfo.val()),
+
+             $itemPicture= $('#itemPicture'),
+            itemPictureVal = $.trim($itemPicture.val()),
+
+             $itemLastmod= $('#itemLastmod'),
+            itemLastmodVal = $.trim($itemLastmod.val()),
+
+            errorTip = '<div id = "errorTip" class = "alert alert-warning">{0}</div>';
+
+            $("#errorTip, #alt_sucess, $alt_warning").remove();
+
+            if (itemIdVal.length == 0) {
+                $("#container").prepend(errorTip.format('The item id can not be empty'));
+                $itemId.focus();
+                return false;
+            }
+
+            if (itemNameVal.length == 0) {
+                $("#container").prepend(errorTip.formant('The item name can not be empty'));
+                $itemName.focus();
+                return false;
+            }
+
+            if (itemPriceVal.length == 0) {
+                $("#container").prepend(errorTip.format('The item price can not be empty'));
+                $itemPrice.focus();
+                return false;
+            }
+
+            if (itemTypeVal.length == 0) {
+                $("#container").prepend(errorTip.format('The item type can not be empty'));
+                $itemType.focus();
+                return false;
+            }
+
+            if (itemCaloriesVal.length == 0) {
+                $("#container").prepend(errorTip.format('The item calories can not be empty'));
+                $itemCalories.focus();
+                return false;
+            }
+
+
+            if (itemSugarVal.length == 0) {
+                $("#container").prepend(errorTip.format('The item sugar can not be empty'));
+                $itemSugar.focus();
+                return false;
+            }
+
+
+            if (itemInfoVal.length == 0) {
+                $("#container").prepend(errorTip.format('The item info can not be empty'));
+                $itemInfo.focus();
+                return false;
+            }
+
+
+            if (itemLastmodVal.length == 0) {
+                $("#container").prepend(errorTip.format('The item modify data can not be empty'));
+                $itemLastmod.focus();
+                return false;
+            }
+
+            return true;
+        })
+    });
+</script>

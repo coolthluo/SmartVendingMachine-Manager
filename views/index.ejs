@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title></title>
     <link type = "text/css" rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/navbar-static-top.css" />  
+    <link rel="stylesheet" type="text/css" href="/stylesheets/navbar-static-top.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+     <title><%= title %></title>  
 </head>
 <body>
 
@@ -13,19 +15,23 @@
     <div class="navbar-header">         
       <a class="navbar-brand" href="/">Smart Vending Machine Monitor</a>
     </div>
-
+    
     <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
       <form class="navbar-form navbar-right" role="search">
         <ul class="nav navbar-nav navbar-right">
-          <% if (!locals.name) { %>
+          <% if (!user) { %>
               <a class="btn btn-default" href="/reg" role="button">Sign up</a>
               <a class="btn btn-success" href="/login" role="button">Sign in</a>
           <% } else {%>
-            
-            <li><a href="#">        
-                <%= locals.name %> (Manager) 
+            <form method="post">
+            <li><a href="/userdetails" role = "button">        
+                <%= user.name %> <% if(user.isManager == 1) { %> 
+                (Manager) <% } else { %> 
+                (Normal)
+                <% } %>  
             </a></li>
             <li><a href="/logout">Logout</a></li> 
+          </form>
           <% } %>           
         </ul>
       </form>
@@ -45,19 +51,27 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <h2>Revenue Details</h2>
-            <p>Want to know our sales details?</p>
-            <p><a class="btn btn-default btn-lg" role="button">View details &raquo;</a></p>
+            <h2>Item Details</h2>
+            <p>We provide goods information in detail</p>
+            <% if (user) { %>
+                <p><a class="btn btn-default btn-lg" href="/itemdetails" role="button">View details &raquo;</a></p>
+            <% } else { %> 
+                <p><a class="btn btn-default btn-lg" href="/" role="button" onclick="loginFirst()">View details &raquo;</a></p>
+            <% } %>
         </div>
         <div class="col-md-4">
             <h2>Machine Details</h2>
-            <p>Check every smart vending machines inventory!</p>
-            <p><a class="btn btn-default btn-lg" role="button">View details &raquo;</a></p>
+            <p>Check smart vending machines inventory!</p>
+            <% if (user) { %>
+                <p><a class="btn btn-default btn-lg" href="/machinedetails" role="button">View details &raquo;</a></p>
+            <% } else { %> 
+                <p><a class="btn btn-default btn-lg" href="/" role="button" onclick="loginFirst()">View details &raquo;</a></p>
+            <% } %>
         </div>
         <div class="col-md-4">
-            <h2>Item Details</h2>
-            <p>We provide every goods information!</p>
-            <p><a class="btn btn-default btn-lg" role="button">View details &raquo;</a></p>
+            <h2>Sales Details</h2>
+            <p>Want to know our sales details?</p>
+            <p><a class="btn btn-default btn-lg" href="/saledetails" role="button">View details &raquo;</a></p>
         </div>
     </div>
     <hr/>
@@ -66,4 +80,13 @@
     </footer>
 </div>
 </body>
+
+<script type="text/javascript" src="/javascripts/jquery-1.11.1.min.js" ></script>
+<script type="text/javascript">
+    function loginFirst(){
+        alert("You must login at first!");
+    }
+</script>
 </html>
+
+

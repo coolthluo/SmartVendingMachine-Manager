@@ -14,6 +14,7 @@ pool.on('connection', function(connection) {
 
 
 function Employees(employees) {
+    this.ID = employees.ID;
     this.name = employees.name;
     this.password = employees.password;
     this.isManager = employees.isManager;
@@ -37,6 +38,7 @@ pool.getConnection(function(err, connection) {
   //Save Data
   Employees.prototype.save = function save(callback) {
       var employees = {
+          ID        : this.ID,
           name      : this.name,
           password  : this.password,
           isManager : this.isManager
@@ -51,7 +53,7 @@ pool.getConnection(function(err, connection) {
             return;
           }
 
-          connection.release();
+          // connection.release();
 
           console.log("invoked[save]");
           callback(err, result);
@@ -68,7 +70,7 @@ pool.getConnection(function(err, connection) {
               return;
           }
 
-          connection.release();
+          // connection.release();
 
           console.log("invoked[getEmployeesNumByName]");
           callback(err, result);
@@ -86,7 +88,7 @@ pool.getConnection(function(err, connection) {
                 return;
             }
 
-            connection.release();
+            // connection.release();
 
             console.log("invoked[getEmployeesByEmployeesName]");
             callback(err,result);

@@ -15,7 +15,6 @@ router.post('/', function(req, res) {
         md5 = crypto.createHash('md5');
        
     Employees.getEmployeesByEmployeesName(userName, function (err, results) {                            
-        
         if (results == ''){
             res.locals.error = 'The user is not existence';
             res.render('login',{title:TITLE_LOGIN});
@@ -28,17 +27,24 @@ router.post('/', function(req, res) {
             res.render('login',{title:TITLE_LOGIN});
             return;
         } 
-        if (results[0].isManager != 1) {
-            res.locals.error = 'This account is not manager!';
-            res.render('login',{title:TITLE_LOGIN});
-            return;
-        } else{
+        // if (results[0].isManager != 1) {
+        //     res.locals.error = 'This account is not manager!';
+        //     res.render('login',{title:TITLE_LOGIN});
+        //     return;
+        // } 
+        else{
             if(isRem){
                 res.cookie('islogin', userName, { maxAge: 60000 });                 
             }
 
-            console.log("this is isManager" + results[0].isManager);
+            
 
+            req.session.user =  results[0];
+            console.log("this is: " + results[0].name);
+
+            res.locals.userid = results[0].ID;
+            req.session.userid = results[0].ID;
+            
             res.locals.name = results[0].name;
             req.session.name = results[0].name; 
 
@@ -47,8 +53,8 @@ router.post('/', function(req, res) {
                          
             res.redirect('/');
             return;
-        }    
-    });              
+        }
+    });
 });
 
 module.exports = router;

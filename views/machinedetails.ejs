@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">       
+    <title></title>
+  	
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+  </head>
+  <body>
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">         
+      <div class="btn-group">
+      	<a class="navbar-brand" href="/">Home</a>
+		  <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Operation <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu">
+		    <li><a href="/additem">Add Item</a></li>
+		    <li><a href="/updateitem">Update Item</a></li>
+		    <li><a href="/deleteitem">Delete Item</a></li>
+		  </ul> -->
+	</div>
+    </div>
+    
+    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-right" role="search">
+        <ul class="nav navbar-nav navbar-right">
+          <% if (!locals) { %>
+              <a class="btn btn-default" href="/reg" role="button">Sign up</a>
+              <a class="btn btn-success" href="/login" role="button">Sign in</a>
+          <% } else {%>
+            
+             <li><a href="/userdetails" role = "button">        
+                <%= user.name %> <% if(user.isManager == 1) { %> 
+                (Manager) <% } else { %> 
+                (Normal)
+                <% } %>  
+            </a></li>
+            <li><a href="/logout">Logout</a></li> 
+          <% } %>           
+        </ul>
+      </form>
+    </div>              
+  </div>
+</div>
+
+  	<div class="container">
+  	<% if (locals) { %>
+  		<form method="post">
+		<table id="itemTable" class="table table-bordered table-striped table-hover" > 
+			<caption><h2>Machine Details</h2></caption> 
+			<thead>
+				<tr> 
+					<th>ID</th>
+					<th>Address</th> 
+					<th>Start Date</th>
+					<th>Last Sync Date</th> 
+				</tr> 
+			</thead> 
+			<tbody>
+			<% for(var i = 0; i < machines.length; i++) {%> 
+				<tr>
+					<td ><a id="machineId<%=i%>" role="button" href="/machineitem"><%= machines[i].ID%></a></td>
+					<td ><%= machines[i].address%></td>
+					<td ><%= machines[i].startdate%></td>
+					<td ><%= machines[i].lastsync%></td>
+<!-- 					<td ><a id="machineId<%=i%>" role="button"><%= machines[i].ID%></a></td>
+					<td id="machineAddress<%=i%>"><%= machines[i].address%></td>
+					<td id="machineStartDate<%=i%>"><%= machines[i].startdate%></td>
+					<td id="machineLastSync<%=i%>"><%= machines[i].lastsync%></td> -->
+				</tr>
+			<% } %>
+			</tbody> 
+		</table>
+	</form>
+	<div class="container">
+		<a class="btn" href="/" role="button">back home</a>
+	</<div>
+	<% } else { %>
+		<h2>You Must Login!</h2>
+		<a class="btn btn-default" href="/login" role="button">Login</a>
+		<a class="btn btn-default" href="/" role="button"> Back to home page</a>
+
+	<% } %>
+	</div>	
+  </body>
+  <hr/>
+  <footer>
+     <p>&copy;COEN359 2015</p>
+  </footer>
+</html>
+
+
+<script src="/javascripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="/javascripts/bootstrap.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	// $('.button').on('click', function(e) {
+
+ //    $.post('/machinedetails', function(data) {
+ //        // 此处的callback function中的data为server返回的数据(没有数据也可)
+ //        console.log(data);
+ //    };
+	//  $(document).ready(function(){
+	// 	    //找到所有td节点
+	// 	    var tds = $('table tr').find("td:eq(0)");
+	// 	    //给所有的td节点增加点击事件
+	// 	    tds.click(postId);
+		
+	// });
+
+	// $('.buttonId').on('click', function(e) {
+
+	//     console.log(111);
+	//     // $.get('/buttonClicked', function(data) {
+	//     //     // 此处的callback function中的data为server返回的数据(没有数据也可)
+	//     //     console.log(data);
+	//     // };
+	// });
+
+
+    $(document).ready(function(){
+    	var tds = $('table tr').find("td:eq(0)");
+		    //给所有的td节点增加点击事件
+		tds.click(postId);
+      });
+    function postId() {
+    	var clickfunction = this;
+	    //0,获取当前的td节点
+	    var td = $(this);
+	    //1,取出当前td中的文本内容保存起来
+	    var originalText = $(this).text();
+	    // console.log(originalText);
+	    // $(this).attr("id", "machineID" + originalText);
+	    var newID = originalText;
+	    console.log(newID);
+
+	    $.post("/machineitem",{machineId: newID}, function(data){
+        });
+    }
+</script>
+

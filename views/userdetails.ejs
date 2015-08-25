@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">       
+    <title></title>
+    
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+  </head>
+  <body>
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">         
+      <div class="btn-group">
+        <a class="navbar-brand" href="/">Home</a>
+  </div>
+    </div>
+    
+    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-right" role="search">
+        <ul class="nav navbar-nav navbar-right">
+          <% if (!user) { %>
+              <a class="btn btn-default" href="/reg" role="button">Sign up</a>
+              <a class="btn btn-success" href="/login" role="button">Sign in</a>
+          <% } else {%>
+            
+            <li><a href="#">        
+                <%= user.name %> (Manager) 
+            </a></li>
+            <li><a href="/logout">Logout</a></li> 
+          <% } %>           
+        </ul>
+      </form>
+    </div>              
+  </div>
+</div>
+
+    <div class="container">
+
+    <table id="itemTable" class="table table-bordered table-striped table-hover" > 
+      <caption><h2>User Info</h2></caption> 
+      <thead>
+        <tr> 
+          <th>ID</th>
+          <th>Name</th> 
+          <th>Identity</th>
+        </tr>
+        </tr>
+          <td><%= user.ID %></td>
+          <td><%= user.name %></td>
+          <% if (user.isManager == 1) { %>
+          <td>manager</td>
+          <% } else {%> 
+              <td>normal</td>
+          <% }%> 
+        </tr> 
+      </thead> 
+      <tbody>
+      </tbody> 
+    </table>
+
+  </form>
+  </body>
+  <hr/>
+  <footer>
+     <p>&copy;COEN359 2015</p>
+  </footer>
+</html>
+
+
+<script src="/javascripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="/javascripts/bootstrap.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+</script>

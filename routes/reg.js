@@ -55,7 +55,7 @@ router.post('/', function(req, res) {
           }
          
           res.render('reg', { title: TITLE_REG });
-          });    
+      });    
     });          
 });
 

@@ -1,8 +1,15 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /*padding-top: 40px;*/
+  /*padding-bottom: 40px;*/
+/*  background-color: #eee;*/
+	/*max-height: 1000px;*/
 }
 
-a {
-  color: #00B7FF;
+
+.navbar-header {
+  margin-top:10px;
+}
+
+.dropdown-toggle {
+	margin-top: 7px;
 }
