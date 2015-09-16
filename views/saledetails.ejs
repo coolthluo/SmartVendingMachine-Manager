@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">       
     <title></title>
   	
@@ -49,11 +50,11 @@
 
   	<div class="container">
   		<form method="post">
-		<table id="revenueTable" class="table table-bordered table-hover" style="width:15%"> 
+		<table id="revenueTable" class="table table-bordered table-hover" style="width:800px"> 
 			<caption><h3>Revenue</h3></caption> 
 			<thead>
 				<tr> 
-					<th>Total Revenue</th> 
+					<th>Total Revenue</th>
 				</tr> 
 			</thead> 
 			<tbody>
@@ -62,8 +63,11 @@
 				</tr>
 			</tbody> 
 		</table>
+    <div class="container">
+          <div id="saleschart">generating the graph</div>
+        </div>
 
-    <table id="popularTable" class="table table-bordered table-hover" > 
+    <table id="popularTable" class="table table-bordered table-hover" style="width:800px"> 
       <caption><h3>Popular Item</h3></caption> 
       <thead>
         <tr> 
@@ -74,11 +78,11 @@
         <% for (var i = 0; i < item.length; i++) {%>
         <tr>
           <% if (i == 0) {%> 
-            <td class="danger"><span> <strong> 1th</strong></span></td>
+            <td class="danger"><span> <strong> 1st</strong></span></td>
           <% } else if (i == 1) { %>
-            <td class="warning"><span> <strong> 2th</strong></span></td>
+            <td class="warning"><span> <strong> 2nd</strong></span></td>
           <% } else if (i == 2) { %>
-            <td class="success"><span> <strong> 3th</strong></span></td>
+            <td class="success"><span> <strong> 3rd</strong></span></td>
           <% } else { %> 
             <td><%= i + 1%></td>
           <% } %>
@@ -89,9 +93,11 @@
         <% } %>
       </tbody> 
     </table>
+    <div class="container">
+      <div id="itemgraph">generating the graph</div>
+    </div>
 
-
-    <table id="machineTable" class="table table-bordered table-hover" > 
+    <table id="machineTable" class="table table-bordered table-hover" style="width:800px"> 
       <caption><h3>Machine Sales</h3></caption> 
       <thead>
         <tr> 
@@ -102,11 +108,11 @@
          <% for (var i = 0; i < machine.length; i++) {%>
          <tr>
           <% if (i == 0) {%> 
-            <td class="danger"><span> <strong> 1th</strong></span></td>
+            <td class="danger"><span> <strong> 1st</strong></span></td>
           <% } else if (i == 1) { %>
-            <td class="warning"><span> <strong> 2th</strong></span></td>
+            <td class="warning"><span> <strong> 2nd</strong></span></td>
           <% } else if (i == 2) { %>
-            <td class="success"><span> <strong> 3th</strong></span></td>
+            <td class="success"><span> <strong> 3rd</strong></span></td>
           <% } else { %> 
             <td><%= i + 1%></td>
           <% } %>
@@ -118,10 +124,12 @@
       </tbody> 
     </table>
 	</form>
-	
-		<!-- <a class="btn btn-primary btn-sm active" size="10px" href="/" role="button">Home</a> -->
-  
-	</div>	
+	</div>
+  <div class="container">
+     <div id="machinegraph">generating the graph</div>
+  </div>
+
+
   </body>
   <hr/>
   <div class="container">
@@ -131,6 +139,89 @@
   </div>
 </html>
 
-
+<script type="text/javascript" src="/javascripts/jscharts.js"></script>
 <script src="/javascripts/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script src="/javascripts/bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+function setSalesChartsByMonth() {
+
+    var myData = [];
+   <% for (var i = 0; i < sales.length; i++) {%>
+     var date = '<%= sales[i].date%>';
+     var mon = date.split(' ');
+     var newmon = mon[1];
+     var profits = <%= sales[i].profits%>;
+     var obj=[];
+     obj.push(newmon);
+     obj.push(profits);
+     myData[<%=i%>] = obj;
+     // console.log(myData[<%= i%>]);
+  <% } %>  
+
+      var myChart = new JSChart('saleschart', 'line');
+      myChart.setDataArray(myData);
+      myChart.setTitle('Revenue By Month');
+      myChart.setAxisNameX('Month');
+      myChart.setAxisNameY('Profit', true);
+      myChart.draw();
+}
+
+function getMonth(date) {
+  var mon = date.split(' ');
+  var newmon = mon[1];
+  return newmon;
+}
+
+function setItemCharts() {
+  var myData = [];
+   <% for (var i = 0; i < item.length; i++) {%>
+     // console.log('<%= item[i].name%>');
+     var name = '<%= item[i].name%>';
+     var profit = <%= item[i].profit%>;
+     var totalprofit = <%= sumprofit%>;
+     var itemsalepercent = parseFloat(profit / totalprofit * 100).toFixed(1) ;
+     var percent = parseFloat(itemsalepercent);
+     var obj=[];
+     obj.push(name);
+     obj.push(percent);
+     myData[<%=i%>] = obj;
+     // console.log(myData[<%= i%>]);
+  <% } %>  
+
+
+  var myChart = new JSChart('itemgraph', 'pie');
+  myChart.setTitle('Item Sales Percentage (%)');
+  myChart.setDataArray(myData);
+  myChart.draw();
+}
+
+
+function setMachineCharts() {
+  var myData = [];
+   <% for (var i = 0; i < machine.length; i++) {%>
+     // console.log('<%= machine[i].address%>');
+     var name = '<%= machine[i].address%>';
+     var profit = <%= machine[i].profit%>;
+     var totalprofit = <%= sumprofit%>;
+     var machinesalepercent = parseFloat(profit / totalprofit * 100).toFixed(1) ;
+     var percent = parseFloat(machinesalepercent);
+     var obj=[];
+     obj.push(name);
+     obj.push(percent);
+     myData[<%=i%>] = obj;
+     // console.log(myData[<%= i%>]);
+  <% } %>  
+
+
+  var myChart = new JSChart('machinegraph', 'pie');
+  myChart.setTitle('Machine Profit Percentage(%)');
+  myChart.setDataArray(myData);
+  myChart.set3D(true);
+  myChart.draw();
+}
+
+setSalesChartsByMonth();
+setItemCharts();
+setMachineCharts();
+</script>

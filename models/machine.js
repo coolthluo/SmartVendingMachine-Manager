@@ -81,4 +81,16 @@ pool.getConnection(function(err, connection) {
     });
   };
 
+  Machine.getAllSalesInfoGroupByMonth = function getAllSalesInfoGroupByMonth(callback) {
+    var getAllSalesInfoGroupByMonth_Sql = "select sum(profit) as profits, date from sales group by (DATE_FORMAT(date, '%y-%m'))";
+    connection.query(getAllSalesInfoGroupByMonth_Sql, function(err, result) {
+      if (err) {
+        console.log("getAllSalesInfoGroupByMonth_Sql Error: " + err.message);
+        return;
+      }
+
+      callback(err, result);
+    });
+  };
+
 });

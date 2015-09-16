@@ -57,18 +57,6 @@
 
   	<div class="container">
 
-<!--   	<div class="btn-group">
-	  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	    Action <span class="caret"></span>
-	  </button>
-	  <ul class="dropdown-menu">
-	    <li><a href="#">Action</a></li>
-	    <li><a href="#">Another action</a></li>
-	    <li><a href="#">Something else here</a></li>
-	    <li role="separator" class="divider"></li>
-	    <li><a href="#">Separated link</a></li>
-	  </ul>
-	</div> -->
   	<% if (locals.name) { %>
 		<table id="itemTable" class="table table-bordered table-striped table-hover" > 
 			<caption><h2>Item Details</h2></caption> 
@@ -131,70 +119,4 @@
 	function normalUser() {
 		alert("You have not right to operate!");
 	}
-	// $(document).ready(function(){
-	//     //找到所有td节点
-	//     var tds = $('table td:not(:first-child)');
-	//     //给所有的td节点增加点击事件
-	//     tds.click(tdclick);
-	// });
-	// function tdclick(){
-	//     var clickfunction = this;
-	//     //0,获取当前的td节点
-	//     var td = $(this);
-	//     //1,取出当前td中的文本内容保存起来
-	//     var originalText = $(this).text();
-	//     //2，清空td里边内同
-	//     td.html("");
-	//     //3,建立一个文本框，也就是建一个input节点
-	//     var input = $("<input>");
-	//     //4,设置文本框中值是保存起来的文本内容
-	//     input.attr("value",originalText);
-	//     //4.5让文本框可以相应键盘按下的事件
-	//     input.keyup(function(event){
-	//         //记牌器当前用户按下的键值
-	//         var myEvent = event || window.event;//获取不同浏览器中的event对象
-	//         var kcode = myEvent.keyCode;
-	//         //判断是否是回车键按下
-	//         if(kcode == 13){
-	//         	var confirmVal = window.confirm("Do you confirm change the value?"); 
-	//         	if (confirmVal) {
-	//         		//获取当前节点
-	//         		var inputnode = $(this);
-	// 		        //获取当前文本框的内容
-	// 		        var inputext = inputnode.val();
-	// 		        //清空td里边的内容,然后将内容填充到里边
-	// 		        var tdNode = inputnode.parent();
-	// 		        tdNode.html(inputext);
-	// 		        //让td重新拥有点击事件
-	// 		        tdNode.click(tdclick);
-	//         	} else {
-	// 		     	var inputnode = $(this);
-	// 		        var inputext = originalText;
-	// 		        var tdNode = inputnode.parent();
-	// 		        tdNode.html(originalText);
-	// 		        tdNode.click(tdclick);
-	//         	}
-	//         } else if(kcode == 27){
-	// 		     	var inputnode = $(this);
-	// 		        var inputext = originalText;
-	// 		        var tdNode = inputnode.parent();
-	// 		        tdNode.html(originalText);
-	// 		        tdNode.click(tdclick);
-	//         }
-	//     });
-	//     //5，把文本框加入到td里边去
-	//     td.append(input);
-	//     //5.5让文本框里边的文章被高亮选中
-	//     //需要将jquery的对象转换成dom对象
-	//     var inputdom = input.get(0);
-	//     inputdom.select();
-	   
-	//     //6,需要清楚td上的点击事件
-	//     td.unbind("click");
-	// }
-	 // $(document).click(function (e) { 
-		// var v_id = $(e.target).attr('id');
-		// alert(v_id);
-		// locals.
-	 // });
 </script>

@@ -1,7 +1,7 @@
 var express = require('express'),
     router = express.Router(),
     Employees = require('../models/employees.js'),
-    crypto = require('crypto'),
+    // crypto = require('crypto'),
     TITLE_LOGIN = 'Login';
 
 router.get('/', function(req, res) {
@@ -11,8 +11,8 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
     var userName = req.body['txtUserName'],
         userPwd = req.body['txtUserPwd'],
-        isRem = req.body['chbRem'],
-        md5 = crypto.createHash('md5');
+        isRem = req.body['chbRem'];
+        // md5 = crypto.createHash('md5');
        
     Employees.getEmployeesByEmployeesName(userName, function (err, results) {                            
         if (results == ''){
@@ -21,7 +21,7 @@ router.post('/', function(req, res) {
             return;
         }
 
-        userPwd = md5.update(userPwd).digest('hex');
+        // userPwd = md5.update(userPwd).digest('hex');
         if (results[0].name != userName || results[0].password != userPwd){
             res.locals.error = 'Username or Password is wrong';
             res.render('login',{title:TITLE_LOGIN});

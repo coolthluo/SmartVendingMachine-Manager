@@ -3,7 +3,7 @@ var express = require('express'),
 
 router.get('/', function(req, res) {
   req.session.destroy();
-  res.redirect('/login');
+  res.redirect('/');
 });
 
 module.exports = router;

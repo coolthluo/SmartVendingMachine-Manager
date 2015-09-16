@@ -37,8 +37,10 @@ router.post('/', function(req, res) {
               res.locals.error = err;
               res.render('reg', { title: TITLE_REG });
               return;
+    } else {
+      res.locals.success = 'Update successed, please click   <a class="btn btn-link" href="/itemdetails" role="button"> itemdetails </a>' ;
+      res.render('updateitem', { title: TITLE_REG });
     }
-    res.render('updateitem', { title: TITLE_REG });
   });
 });
 

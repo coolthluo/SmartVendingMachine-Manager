@@ -1,7 +1,7 @@
 var express = require('express'),
     router = express.Router(),
     Employees = require('../models/employees.js'),
-    crypto = require('crypto'),
+    // crypto = require('crypto'),
     TITLE_REG = 'Register Page';
 
 router.get('/', function(req, res) {
@@ -12,10 +12,10 @@ router.post('/', function(req, res) {
   var employeesName = req.body['txtEmployeesName'],
   	  employeesIsManager = req.body['txtIsManager'],
       employeesPwd = req.body['txtEmployeesPwd'],
-      employeesRePwd = req.body['txtEmployeesRePwd'],      
-      md5 = crypto.createHash('md5');
+      employeesRePwd = req.body['txtEmployeesRePwd'];     
+      // md5 = crypto.createHash('md5');
  
-      employeesPwd = md5.update(employeesPwd).digest('hex');
+      // employeesPwd = md5.update(employeesPwd).digest('hex');
 
   var newEmployees = new Employees({
       name: employeesName,
