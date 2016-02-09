@@ -15,7 +15,8 @@ Smart Cals Vending Machine--
 Web Monitor Subsystem
 
 
-1.	Project scope, requirements, assumptions and limitations
+Project scope, requirements, assumptions and limitations
+
 Let’s briefly review the requirements in this project. Customers can select and buy items include smart cal cards. They can pay by two different ways, coins and cards. So we have to keep tracking the balance in cards. Also, query information and get suggestions based on customers’ requirements. And manager can monitor the status of vending machines. Also, manage items and nutrition information.
 
 After analyzing those requirements, we decide to make our project as a real-life scenario as possible. We didn’t just set our scope as a on-campus vending machines management simulation application. We try to built our system to make it work for a multistate vending machine corporation. 
